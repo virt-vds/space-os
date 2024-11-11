@@ -23,7 +23,7 @@ USERS_FILE = os.path.join(base_directory, 'etc', 'users')
 REPO_FILE = os.path.join(base_directory, 'etc', 'appinstallrepos')
 HOME_DIR = os.path.join(base_directory, 'home')
 ROOT_HOME_DIR = os.path.join(HOME_DIR, 'root')
-DEFAULT_REPO = "https://raw.githubusercontent.com/thestupidadmin/spaceos/refs/heads/main/repos"
+DEFAULT_REPO = "https://raw.githubusercontent.com/virt-vds/space-os/refs/heads/main/repos"
 
 def initialize_file_system():
     os.makedirs(os.path.join(base_directory, 'bin'), exist_ok=True)
@@ -63,6 +63,7 @@ def login():
             current_user = username
             current_home = user_info[2]
             print(f"Logged in as {username}. Home directory: {current_home}")
+            print("Welcome to space-OS, Use help to check what is there.")
             return True
     print("User not found.")
     return False
@@ -109,8 +110,8 @@ def appreinstall(app_name):
     appinstall(app_name)
 
 def vpasswd(username):
-    if username != "root":
-        print("Password change is allowed only for the root user.")
+    if username != "systemos":
+        print("Password change is allowed only for the systemos user.")
         return
 
     new_password = input("Enter new password: ")
@@ -255,7 +256,7 @@ initialize_file_system()
 
 if login():
     while True:
-        command = input(f"{current_user}@spaceOS ~ $ ")
+        command = input(f"{current_user}@space-OS ~ $ ")
         execute_command(command)
 else:
     print("Failed to login.")
